@@ -22,6 +22,7 @@ class RetranslateShell extends Shell {
 		$lang = isset($this->args[1]) ? $this->args[1] : 'eng';
 		
 		$model = ClassRegistry::init($modelName);
+		$model->Behaviors->attach('Retranslatable.Retranslatable');
 		$model->initializeTranslationTable($lang);
 	}
 }
