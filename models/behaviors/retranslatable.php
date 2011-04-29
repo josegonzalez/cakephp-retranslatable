@@ -35,7 +35,7 @@ class RetranslatableBehavior extends ModelBehavior {
  * @author Jose Diaz-Gonzalez
  * @access public
  */
-	function initializeTranslationTable(&$model) {
+	function initializeTranslationTable(&$model, $locale = 'eng') {
 		$attachedBehaviors = $behaviors = $model->Behaviors->attached();
 		if (!in_array('Translate', $attachedBehaviors)) {
 			trigger_error("{$model->alias} does not have the TranslateBehavior attached", E_USER_ERROR);
@@ -61,7 +61,7 @@ class RetranslatableBehavior extends ModelBehavior {
 		foreach ($records as $key => $record) {
 			foreach ($fields as $field) {
 				$translationRecord = array(
-					'locale' => 'pt_br',
+					'locale' => $locale,
 					'model' => $model->alias,
 					'foreign_key' => $record[$model->alias][$model->primaryKey],
 					'field' => $field,
